@@ -1,4 +1,4 @@
-import VueFold from './VueFold.vue';
+import VueFold from 'src/VueFold.vue';
 
 export function install(Vue) {
   if (install.installed) return;
