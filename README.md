@@ -47,7 +47,7 @@ Or use [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Sl
 ```HTML
 <template>
   <VueFold>
-    <template v-slot="vuefold">
+    <template v-slot="{ vuefold }">
       <pre>
         {{ vuefold }}
       </pre>
@@ -87,7 +87,7 @@ export default {
   </div>
 
   <VueFold :options="{ rootMargin: '20%px 0px 20% 0px' }">
-    <template v-slot="vuefold">
+    <template v-slot="{ vuefold }">
       <transition name="fade">
         <img v-show="vuefold.seen" src="https://placeimg.com/640/480/animals" />
       </transition name="fade">
