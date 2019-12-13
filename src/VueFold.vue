@@ -5,7 +5,7 @@ export default {
   props: ['options'],
 
   data: () => ({
-    default: { rootMargin: '-10% -10% -10% -10%' },
+    default: { rootMargin: '-20% -20% -20% -20%' },
     inFold: false,
     seen: false,
   }),
