@@ -2,28 +2,40 @@
 export default {
   name: 'VueFold',
 
-  props: ['options'],
+  props: {
+    options: Object,
+    disconnect: {
+      type: Boolean,
+      default: true,
+    },
+  },
 
   data: () => ({
     default: { rootMargin: '-20% -20% -20% -20%' },
     inFold: false,
     seen: false,
+    watch: null,
   }),
 
   methods: {
     run(entries) {
       if (entries[0].intersectionRatio > 0) {
-        this.$emit('inFold', true);
         this.$emit('seen');
-
-        this.inFold = true;
         this.seen = true;
 
-        // this.watch.disconnect();
+        if (this.disconnect) {
+          this.watch.disconnect();
+        } else {
+          this.fold(true);
+        }
       } else {
-        this.$emit('inFold', false);
-        this.inFold = false;
+        this.fold(false);
       }
+    },
+
+    fold(val) {
+      this.$emit('inFold', val);
+      this.inFold = val;
     },
   },
 

@@ -37,7 +37,7 @@ Use VueFold events
 ```HTML
 <template>
   <VueFold @inFold="inFoldHandler()" @seen="seenHandler()">
-    <!-- content -->
+    <!-- sweet -->
   </VueFold>
 </template>
 ```
@@ -52,6 +52,20 @@ Or use [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Sl
         {{ vuefold }}
       </pre>
     </template>
+  </VueFold>
+</template>
+```
+
+## Config
+
+By default, VueFold will disconnect it's watcher once it becomes active. Pass `disconnect` as `false` to keep the watcher alive.
+
+When `disconnect` is `false`, VueFold will emit an `inFold` event and prop.
+
+```HTML
+<template>
+  <VueFold :disconnect="false">
+    <!-- nice -->
   </VueFold>
 </template>
 ```
