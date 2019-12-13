@@ -1,19 +1,37 @@
-import commonjs from 'rollup-plugin-commonjs'; // Convert CommonJS modules to ES6
-import vue from 'rollup-plugin-vue'; // Handle .vue SFC files
-import buble from 'rollup-plugin-buble'; // Transpile/polyfill with reasonable browser support
+import commonjs from 'rollup-plugin-commonjs';
+import uglify from 'rollup-plugin-uglify-es';
+import replace from 'rollup-plugin-replace';
+import buble from 'rollup-plugin-buble';
+import vue from 'rollup-plugin-vue';
+import minimist from 'minimist';
 
-export default {
-  input: 'src/wrapper.js', // Path relative to package.json
+const argv = minimist(process.argv.slice(2));
+
+const config = {
+  input: 'src/entry.js',
   output: {
     name: 'VueFold',
     exports: 'named',
   },
   plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     commonjs(),
     vue({
-      css: true, // Dynamically inject css as a <style> tag
-      compileTemplate: true, // Explicitly convert template to render function
+      css: true,
+      compileTemplate: true,
+      template: {
+        isProduction: true,
+      },
     }),
-    buble({ objectAssign: true }), // Transpile to ES5
+    buble({ objectAssign: true }),
   ],
 };
+
+// Only minify browser (iife) version
+if (argv.format === 'iife') {
+  config.plugins.push(uglify());
+}
+
+export default config;
