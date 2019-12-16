@@ -12,46 +12,31 @@ export default {
 
   data: () => ({
     default: { rootMargin: '-20% -20% -20% -20%' },
-    inFold: false,
+    intersection: {},
+    visible: false,
     seen: false,
-    watch: null,
   }),
 
   methods: {
-    run(entries) {
-      if (entries[0].intersectionRatio > 0) {
+    callback(visible) {
+      if (!this.seen && visible) {
         this.$emit('seen');
         this.seen = true;
-
-        if (this.disconnect) {
-          this.watch.disconnect();
-        } else {
-          this.fold(true);
-        }
-      } else {
-        this.fold(false);
       }
-    },
 
-    fold(val) {
-      this.$emit('inFold', val);
-      this.inFold = val;
+      this.visible = visible;
+      this.$emit('visible', visible);
     },
   },
 
   mounted() {
-    this.watch = new IntersectionObserver(this.run, {
-      ...this.default,
-      ...(this.options || {}),
-    });
-
-    this.watch.observe(this.$refs['vuefold']);
+    this.intersection = { ...this.default, ...(this.options || {}) };
   },
 };
 </script>
 
 <template>
-  <div ref="vuefold">
-    <slot v-bind:vuefold="{ inFold, seen }" />
+  <div v-observe-visibility="{ callback, intersection, once: disconnect }">
+    <slot v-bind:vuefold="{ visible, seen }" />
   </div>
 </template>

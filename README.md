@@ -1,6 +1,12 @@
 # VueFold
 
-VueFold uses [The Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to determine if an element is in the fold.
+# BIG WIP
+
+> ignore most of this readme :eyes:
+
+VueFold is an opinionated wrapper around [vue-observe-visibility](https://github.com/Akryum/vue-observe-visibility).
+
+It provides a `VueFold` component which uses the `v-observe-visibility` directive to detect when an element is becoming visible or hidden on the page.
 
 ## Getting started
 
@@ -36,7 +42,7 @@ Use VueFold events
 
 ```HTML
 <template>
-  <VueFold @inFold="inFoldHandler()" @seen="seenHandler()">
+  <VueFold @visible="visibleHandler()" @seen="seenHandler()">
     <!-- sweet -->
   </VueFold>
 </template>
@@ -46,12 +52,10 @@ Or use [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Sl
 
 ```HTML
 <template>
-  <VueFold>
-    <template v-slot="{ vuefold }">
-      <pre>
-        {{ vuefold }}
-      </pre>
-    </template>
+  <VueFold v-slot="{ vuefold }">
+    <pre>
+      {{ vuefold }}
+    </pre>
   </VueFold>
 </template>
 ```
@@ -60,7 +64,7 @@ Or use [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Sl
 
 By default, VueFold will disconnect it's watcher once it becomes active. Pass `disconnect` as `false` to keep the watcher alive.
 
-When `disconnect` is `false`, VueFold will emit an `inFold` event and prop.
+When `disconnect` is `false`, VueFold will emit an `visible` event and prop.
 
 ```HTML
 <template>
@@ -86,12 +90,10 @@ export default {
     scroll down coward
   </div>
 
-  <VueFold :options="{ rootMargin: '20%px 0px 20% 0px' }">
-    <template v-slot="{ vuefold }">
-      <transition name="fade">
-        <img v-show="vuefold.seen" src="https://placeimg.com/640/480/animals" />
-      </transition name="fade">
-    </template>
+  <VueFold :options="{ rootMargin: '20% 0px 20% 0px' }"  v-slot="{ vuefold }">
+    <transition name="fade">
+      <img v-show="vuefold.seen" src="https://placeimg.com/640/480/animals" />
+    </transition name="fade">
   </VueFold>
 </template>
 

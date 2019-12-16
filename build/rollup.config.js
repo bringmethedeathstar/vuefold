@@ -12,11 +12,13 @@ const config = {
   output: {
     name: 'VueFold',
     exports: 'named',
+    globals: {
+      'vue-observe-visibility': 'VueObserveVisibility',
+    },
   },
+  external: ['vue-observe-visibility'],
   plugins: [
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
+    replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
     commonjs(),
     vue({
       css: true,
