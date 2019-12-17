@@ -1,11 +1,11 @@
 {
   "name": "vuefold",
-  "version": "0.2.0",
-  "main": "dist/VueFold.umd.js",
-  "module": "dist/VueFold.esm.js",
-  "unpkg": "dist/VueFold.min.js",
+  "version": "0.2.1",
+  "main": "dist/vuefold.umd.js",
+  "module": "dist/vuefold.esm.js",
+  "unpkg": "dist/vuefold.min.js",
   "browser": {
-    "./sfc": "src/VueFold.vue"
+    "./sfc": "src/vuefold.vue"
   },
   "files": [
     "dist/*",
@@ -21,9 +21,9 @@
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build": "npm run build:unpkg & npm run build:es & npm run build:umd",
-    "build:umd": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format umd --file dist/VueFold.umd.js",
-    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es --file dist/VueFold.esm.js",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/VueFold.min.js"
+    "build:umd": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format umd --file dist/vuefold.umd.js",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es --file dist/vuefold.esm.js",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/vuefold.min.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
