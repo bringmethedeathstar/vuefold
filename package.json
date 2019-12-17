@@ -1,6 +1,6 @@
 {
   "name": "vuefold",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "dist/vuefold.umd.js",
   "module": "dist/vuefold.esm.js",
   "unpkg": "dist/vuefold.min.js",
