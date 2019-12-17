@@ -1,11 +1,11 @@
 {
   "name": "vuefold",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/vuefold.umd.js",
   "module": "dist/vuefold.esm.js",
   "unpkg": "dist/vuefold.min.js",
   "browser": {
-    "./sfc": "src/vuefold.vue"
+    "./sfc": "src/VueFold.vue"
   },
   "files": [
     "dist/*",

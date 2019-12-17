@@ -1,9 +1,9 @@
-import VueFold from './VueFold.vue';
+import vuefold from './VueFold.vue';
 
 function install(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('VueFold', VueFold);
+  Vue.component('VueFold', vuefold);
 }
 
 const plugin = {
@@ -21,6 +21,6 @@ if (GlobalVue) {
   GlobalVue.use(plugin);
 }
 
-VueFold.install = install;
+vuefold.install = install;
 
-export default VueFold;
+export default vuefold;
